@@ -1,58 +1,78 @@
 import java.util.*;
 
-class Employee {
-    String name;
-    int emp_id;
-    String department;
-    int age;
-    String designation;
-    double salary;
+class EmployeeDetails {
+    public String name, ID, dept, designation;
+    public int age;
+    public double sal;
 
-    Employee(String name, int emp_id, String department, int age, String designation, double salary) {
-        this.name = name;
-        this.emp_id = emp_id;
-        this.department = department;
-        this.age = age;
-        this.designation = designation;
-        this.salary = salary;
+    public void getdata() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter name of the employee:");
+        name = sc.nextLine();
+        System.out.println("Enter Employee ID:");
+        ID = sc.nextLine();
+        System.out.println("Enter department of the Employee:");
+        dept = sc.nextLine();
+        System.out.println("Enter the designation of employee:");
+        designation = sc.nextLine();
+        System.out.println("Enter the age of the employee:");
+        age = sc.nextInt();
+        System.out.println("Enter the salary of the employee:");
+        sal = sc.nextDouble();
+    }
+
+    public void printdata() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Employee ID: " + ID);
+        System.out.println("Department: " + dept);
+        System.out.println("Designation: " + designation);
+        System.out.println("Salary: " + sal);
+        System.out.println();
     }
 }
 
 public class p2 {
     public static void main(String[] args) {
-        ArrayList<Employee> employees = new ArrayList<>();
-        // Add employees to the list
-        employees.add(new Employee("John", 1, "sales", 30, "manager", 50000));
-        employees.add(new Employee("Jane", 2, "sales", 32, "executive", 40000));
-        employees.add(new Employee("Bob", 3, "purchase", 35, "manager", 60000));
-        employees.add(new Employee("Alice", 4, "purchase", 28, "executive", 45000));
-        employees.add(new Employee("Charlie", 5, "HR", 25, "executive", 35000));
-
-        // Display details of all employees
-        for (Employee e : employees) {
-            System.out.println("Name: " + e.name + ", Emp_id: " + e.emp_id + ", Department: " + e.department + ", Age: " + e.age + ", Designation: " + e.designation);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the nber of e:");
+        int n = sc.nextInt();
+        EmployeeDetails[]e = new EmployeeDetails[n]; // Corrected class name
+        for (int i = 0; i < n; i++) {
+            System.out.println("Enter details for Employee " + (i + 1));
+            e[i] = new EmployeeDetails(); // Corrected class name
+            e[i].getdata();
         }
 
-        // Calculate and display the sum of salary of all the employees of "sales" department
-        double sum = 0;
-        for (Employee e : employees) {
-            if (e.department.equals("sales")) {
-                sum += e.salary;
+        for (int i = 0; i < n; i++) {
+            System.out.println("Details for Employee " + (i + 1));
+            e[i].printdata();
+        }
+
+        double salesTotal = 0;
+        for (int i = 0; i < n; i++) {
+            if (e[i].dept.compareTo("sales") == 0) {
+                salesTotal = salesTotal + e[i].sal;
             }
         }
-        System.out.println("Sum of salary of all the employees of 'sales' department: " + sum);
+        System.out.println("Total salary of sales Department is: " + salesTotal);
 
-        // Retrieve the details of "highest paid manager" in the purchase department
-        Employee highestPaidManager = null;
-        for (Employee e : employees) {
-            if (highestPaidManager==null || e.department.equals("purchase") && e.designation.equals("manager")) {
-                if (highestPaidManager == null || e.salary > highestPaidManager.salary) {
-                    highestPaidManager = e;
+        double max = 0;
+        int index = -1; // Initialize with -1 to indicate no manager found
+        for (int i = 0; i < n; i++) {
+            if (e[i].dept.compareTo("purchase") == 0 && e[i].designation.compareTo("manager") == 0) {
+                if (e[i].sal > max) {
+                    max = e[i].sal;
+                    index = i;
                 }
             }
         }
-        if (highestPaidManager != null) {
-            System.out.println("Highest paid manager in the purchase department: " + highestPaidManager.name);
-        }
+
+        if (index == -1) {
+            System.out.println("There are no managers in the purchase department");
+        } else {
+            System.out.println("Details of the highest paid manager of the purchase department:");
+            e[index].printdata();
     }
+  }
 }
