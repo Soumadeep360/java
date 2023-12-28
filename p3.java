@@ -1,71 +1,61 @@
-import java.util.*;
+ class ComplexNum {
+    int real;
+    int imag;
 
-class Complex {
-    int real, imaginary;
-
-    Complex(int tempReal, int tempImaginary) {
-        real = tempReal;
-        imaginary = tempImaginary;
+     ComplexNum() {   //default constructor..
+        real = 0;
+        imag = 0;
     }
 
-    Complex addComp(Complex C1, Complex C2) {
-        Complex temp = new Complex(0, 0);
-        temp.real = C1.real + C2.real;
-        temp.imaginary = C1.imaginary + C2.imaginary;
-        return temp;
+     ComplexNum(int x, int y) {  // parameterised constructor..
+        real = x;
+        imag = y;
     }
 
-    Complex subtractComp(Complex C1, Complex C2) {
-        Complex temp = new Complex(0, 0);
-        temp.real = C1.real - C2.real;
-        temp.imaginary = C1.imaginary - C2.imaginary;
-        return temp;
+     ComplexNum add(ComplexNum n) {
+        return new ComplexNum(this.real + n.real, this.imag + n.imag);
     }
 
-    Complex increment() {
-        Complex temp = new Complex(0, 0);
-        temp.real = this.real + 1;
-        temp.imaginary = this.imaginary + 1;
-        return temp;
+     ComplexNum subtract(ComplexNum n) {
+        return new ComplexNum(this.real - n.real, this.imag - n.imag);
     }
 
-    Complex decrement() {
-        Complex temp = new Complex(0, 0);
-        temp.real = this.real - 1;
-        temp.imaginary = this.imaginary - 1;
-        return temp;
+     void increment() {
+        this.real++;
+        this.imag++;
     }
 
-    void printComplexNumber() {
-        System.out.println("Complex number: " + real + " + " + imaginary + "i");
+     void decrement() {
+        this.real--;
+        this.imag--;
+    }
+
+     boolean equals(ComplexNum n) {
+        return this.real == n.real && this.imag == n.imag;
     }
 }
+    public class p3{
+         public static void main(String[] args) {
+        ComplexNum c1 = new ComplexNum(5, 8);
+        ComplexNum c2 = new ComplexNum(1, 2);
 
-public class p3 {
-    public static void main(String[] args) {
-        int a, b, c, d;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("enter the first real part and then imaginary part of the two complex numbers");
-        a = sc.nextInt();
-        b = sc.nextInt();
-        c = sc.nextInt();
-        d = sc.nextInt();
-        Complex C1 = new Complex(a, b);
-        C1.printComplexNumber();
-        Complex C2 = new Complex(c, d);
-        C2.printComplexNumber();
-        Complex C3 = new Complex(0, 0);
-        C3 = C3.addComp(C1, C2);
-        System.out.print("Sum of ");
-        C3.printComplexNumber();
-        C3 = C3.subtractComp(C1, C2);
-        System.out.print("Difference of ");
-        C3.printComplexNumber();
-        System.out.print("incrementation");
-        C3 = C1.increment();
-        C3.printComplexNumber();
-        System.out.print("decrementation");
-        C3 = C2.decrement();
-        C3.printComplexNumber();
+        ComplexNum sum = c1.add(c2);
+        System.out.println("Sum is " + sum.real + "+" + sum.imag + "i");
+
+        ComplexNum diff = c1.subtract(c2);
+        System.out.println("Difference is " + diff.real + "+" + diff.imag + "i");
+
+        c1.increment();
+        System.out.println("After increment " + c1.real + "+" + c1.imag + "i");
+
+        c1.decrement();
+        System.out.println("After decrement " + c1.real + "+" + c1.imag + "i");
+
+        if (c1.equals(c2)) {
+            System.out.println("Numbers are equal");
+        } else {
+            System.out.println("Numbers are not equal");
+        }
     }
 }
+   
