@@ -1,0 +1,10 @@
+<web-app>
+ <servlet>
+ <servlet-name>voterPack</servlet-name>
+ <servlet-class>Voter</servlet-class>
+ </servlet>
+ <servlet-mapping>
+ <servlet-name>voterPack</servlet-name>
+ <url-pattern>/check</url-pattern>
+ </servlet-mapping>
+ </web-app>
