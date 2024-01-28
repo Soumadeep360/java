@@ -5,22 +5,22 @@ interface Compute {
 }
 
 class BytesConverter implements Compute{
-    private int bytes;
+     int gb;
 
-    public BytesConverter(int bytes) {
-        this.bytes = bytes;
+     BytesConverter(int gb) {
+        this.gb = gb;
     }
     public void convert() {
-        double kilobytes = bytes / 1024.0;
-        System.out.println(bytes + " bytes is equal to " + kilobytes + " kilobytes.");
+        long bytes = (long)(gb*1024.0*1024.0*1024.0);
+        System.out.println(bytes + " bytes is equal to " + bytes + " kilobytes.");
     }
    
 }
 
 class CurrencyConverter implements Compute {
-    private double euros;
+     double euros;
 
-    public CurrencyConverter(double euros) {
+     CurrencyConverter(double euros) {
         this.euros = euros;
     }
 
@@ -34,9 +34,9 @@ public class p9 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the number of bytes: ");
-        int bytesInput = scanner.nextInt();
-        BytesConverter bytesConverter = new BytesConverter(bytesInput);
+        System.out.print("Enter the number of gigabytes: ");
+        int gb = scanner.nextInt();
+        BytesConverter bytesConverter = new BytesConverter(gb);
         bytesConverter.convert();
 
         System.out.print("Enter the amount in euros: ");
