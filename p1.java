@@ -1,10 +1,21 @@
 import java.util.*;
-
 public class p1 {
 
-    // Area of rectangle ..
-    static void area(float a, float b) {
-        System.out.println("Area of Rectangle:" + (a * b));
+    // roots of quadratic equation ..
+    static void roots(int a, int b,int c) {
+        double d=(b*b)-(4*a*c);
+        if(d>=0){
+            double root1=(-b+Math.sqrt(d))/(double)(2*a);
+            double root2=(-b-Math.sqrt(d))/(double)(2*a);
+            System.out.println("Roots are : "+root1+"and "+root2);
+        }
+        else{
+            double real=(-b/(double)(2*a));
+            double img=(Math.sqrt(Math.abs(d))/(double)(2*a));
+            System.out.println("Root1 is: "+real+"+"+img+"i");
+            System.out.println("Root2 is: "+real+"-"+img+"i");
+
+        }
     }
 
     // multiplication of arrays..
@@ -59,14 +70,15 @@ public class p1 {
 
         while (true) {
             int ch;
-            System.out.println("1.Area 2.Mult 3.sort 4.exit");
+            System.out.println("1.roots 2.Mult 3.sort 4.exit");
             ch = sc.nextInt();
             switch (ch) {
                 case 1:
-                    int a, b;
+                    int a, b,c;
                     a = sc.nextInt();
                     b = sc.nextInt();
-                    area(a, b);
+                    c = sc.nextInt();
+                    roots(a, b,c);
                     break;
                 case 2:
                     int n;
